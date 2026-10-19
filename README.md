@@ -1,59 +1,57 @@
-# Nexus.AI — Executive Business Telegram Assistant
+# Nexus.AI Telegram Business Assistant
 
-An advanced, asynchronous Telegram bot built with **Aiogram 3.x** and **Python**, designed to simulate high-scale AI enterprise automation tools. This repository serves as a production-ready example of specialized backend engineering for freelance portfolios, showcasing secure data streaming, localized validation layers, and database operations.
+An asynchronous Telegram bot built with **Python** and **aiogram 3**, with SQLite persistence and a simulated AI assistant. It demonstrates a clean, production-style bot structure.
 
-## 🚀 Key Features
+> **Demo note:** the AI replies are simulated with keyword logic and a short delay. The handler is a drop-in spot for a real LLM API (e.g. Claude or OpenAI).
 
-*   **Asynchronous Core:** Driven by `aiogram` v3 for non-blocking, multi-user request processing.
-*   **Production Configuration:** Implements strict environment parsing and typing rules using `pydantic-settings` to avoid insecure state management.
-*   **Async Local Storage:** Integrates a zero-block data management pipeline via `aiosqlite` for transaction logging and analytics caching.
-*   **AI Co-Pilot Simulation:** Emulates real-time deep query scanning with asynchronous execution delays (`asyncio.sleep`) to mimic native LLM completions.
-*   **Rich HTML UI Layout:** Interactive custom multi-tier keyboards providing real-time metric dashboards on-demand.
+## Features
 
-## 🛠️ Architecture & Tech Stack
+- **Async core:** non-blocking handlers built on aiogram 3.
+- **Reply keyboard menu:** analytics, company info, and support buttons.
+- **User and chat logging:** `aiosqlite` stores registered users and conversations.
+- **Typed configuration:** `pydantic-settings` loads secrets from environment variables / `.env`.
+- **Simulated AI assistant:** free-text questions get context-aware answers (customers, revenue, ...).
 
-*   **Language:** Python 3.9+
-*   **Framework:** Aiogram 3.15.0 (Async Telegram Bot API)
-*   **Validation:** Pydantic Settings 2.6.1
-*   **Database:** Async SQLite (aiosqlite 0.20.0)
+## Tech Stack
+
+Python 3.9+ · aiogram 3.15 · pydantic-settings · aiosqlite
+
+## Project Structure
 
 ```text
 .
-├── bot.py          # Main application engine & asynchronous routers
-├── config.py       # Pydantic schema validation & runtime settings
-├── database.py     # Local async SQLite creation & insert statements
-└── requirements.txt# Project dependency definitions
+├── bot.py            # Handlers, keyboard menu, polling entry point
+├── config.py         # Typed settings (BOT_TOKEN, AI_API_KEY)
+├── database.py       # Async SQLite setup and queries
+└── requirements.txt
 ```
 
-## ⚙️ Installation & Deployment
+## Getting Started
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com
-   cd ai-telegram-bot
-   ```
+```bash
+git clone https://github.com/SeriDaron/ai-telegram-bot.git
+cd ai-telegram-bot
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-2. **Set up virtual environment (macOS/Linux):**
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
+Create a `.env` file (get a token from [@BotFather](https://t.me/BotFather)):
 
-3. **Install pinned production requirements:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```env
+BOT_TOKEN=your_telegram_bot_token
+```
 
-4. **Initialize Secret Environment Keys:**
-   Create a local `.env` file in the root directory:
-   ```env
-   BOT_TOKEN="your_telegram_bot_token"
-   ```
+Run the bot:
 
-5. **Run the Application Bootstrapper:**
-   ```bash
-   python3 bot.py
-   ```
+```bash
+python3 bot.py
+```
 
-## 🛡️ Secure Engineering Principles
-This repository strictly complies with modern security baselines: all secret communication credentials, server API keys, and connection components are heavily decoupled from public execution runtimes using secure env mappings. No live keys are ever stored or exposed in development state commits.
+## Security
+
+Secrets are never committed: `.env` and the local database are git-ignored.
+
+## Need something similar?
+
+I build Telegram bots, AI assistants, and business automation. Feel free to reach out.
