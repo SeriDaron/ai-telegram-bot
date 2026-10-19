@@ -20,7 +20,7 @@ dp = Dispatcher()
 # Build a convenient button menu for the customer
 def get_main_keyboard():
     kb = [
-        [KeyboardButton(text="📊 View Analytics"), KeyboardButton(text="🤖 Ask Claude AI")],
+        [KeyboardButton(text="📊 View Analytics"), KeyboardButton(text="🤖 Ask AI Assistant")],
         [KeyboardButton(text="💼 About Nexus.AI"), KeyboardButton(text="📞 Contact Support")]
     ]
     return ReplyKeyboardMarkup(keyboard=kb, resize_keyboard=True)
@@ -38,7 +38,7 @@ async def command_start_handler(message: Message) -> None:
     welcome_text = (
         f"Hello, {html.bold(message.from_user.full_name)}! 👋\n\n"
         f"Welcome to {html.bold('Nexus.AI Business Bot')}.\n"
-        f"I am an intelligent assistant integrated with Claude 3.5 Sonnet.\n\n"
+        f"I am a demo AI assistant (simulated replies).\n\n"
         f"Use the menu below to explore analytics or interact with the AI co-pilot."
     )
     await message.answer(welcome_text, reply_markup=get_main_keyboard())
@@ -86,7 +86,7 @@ async def handle_support(message: Message):
 
 @dp.message()
 async def ai_message_handler(message: Message) -> None:
-    """Handle free-text queries (simulated Claude API integration)"""
+    """Handle free-text queries (simulated LLM API integration)"""
     user_text = message.text.lower()
     
     # Guard against double-triggering when the user presses other menu buttons
@@ -94,7 +94,7 @@ async def ai_message_handler(message: Message) -> None:
         return
 
     # Simulate background AI processing
-    waiting_msg = await message.answer("⏳ <i>Claude is processing your query...</i>")
+    waiting_msg = await message.answer("⏳ <i>Processing your query...</i>")
     await asyncio.sleep(1.2) # Short delay for realism
     
     # Basic agent response logic
