@@ -73,7 +73,7 @@ async def handle_about(message: Message):
         f"🚀 {html.bold('About Our Automation Ecosystem')}\n\n"
         f"Nexus.AI bridges the gap between raw corporate data and intelligent decisions. "
         f"This bot demonstrates server-side background operations, localized architecture, "
-        f"and production-grade asynchronous logic built for high-scale freelance portfolios."
+        f"and production-grade asynchronous logic built for high-scale production portfolios."
     )
     await message.answer(about_text)
 
